@@ -153,10 +153,16 @@
 * Para `Key pair` pode manter a opção `Don't include in launch template`;
 * Em `Network settings` não há necessidade de seleções no momento, a escolha de `subnet` e `Security group` pode ser feita posteriormente durante a criação do `Auto Scalling Group`, mas caso queira, pode-se selecionar logo o `Security Group`;
 * Em `Storage` pode-se manter o default;
-* Clique em `Create launch template`.
 
 > [!NOTE]
 > Para o Programa de Bolsas, é necessário adicionar tags específicas em `Resource Tags`.
+
+* Clique para expandir a aba de `Advanced details`, desça até o final da página e localize o campo para inserção do `User data` e insira os comandos desejados;
+
+> [!NOTE]
+> User data utilizado [aqui](https://github.com/PedroMak/WordpressDeployOnAWSWithDocker/blob/master/userdata.sh).
+
+* Clique em `Create launch template`.
 
 #### De volta à criação do Auto Scalling Group:
 
