@@ -204,3 +204,8 @@
 #### De volta a tela de criação do Auto Scalling Group:
 
 * Clique em `Create Auto Scalling Group`.
+#
+## Testes e Validações:
+
+* Após criar o `Auto Scalling Group` as instâncias `EC2` serão lançadas automaticamente e, após terminarem de iniciar, podemos acessar nosso conteúdo via DNS do `Load Balancer`:
+![wordpressRunning](./images/wordpressRunning.png)
