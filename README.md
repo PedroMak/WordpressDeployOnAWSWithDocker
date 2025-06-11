@@ -1,6 +1,6 @@
 # Projeto Wordpress - AWS e Docker - PB Compass UOL ![logo](./images/compass-logo.png)
 
-## Descrição da atividade:
+## ✏️ Descrição da atividade:
 
 * Instalação e configuração do DOCKER ou CONTAINERD no host EC2;
 * Deploy de uma aplicação Wordpress com: container de aplicação e RDS database MySql;
@@ -10,7 +10,7 @@
 ![arquitetura](./images/arquitetura-projeto.png)
 #
 
-## Criação da VPC:
+## 🔒 Criação da VPC:
 
 ### Navegue no console da AWS até `VPC`, clique em `Create VPC` e siga as seguintes configurações:
 
@@ -27,7 +27,7 @@
 * Ao finalizar, confira a prévia:
 ![vpc-preview](./images/vpc-preview.png)
 #
-## Criação dos Security Groups:
+## 🔐 Criação dos Security Groups:
 
 ### Navegue no console da AWS até `EC2` e no painel localizado na esquerda selecione `Security Groups`, clique em `Create Security Group`:
 
@@ -63,7 +63,7 @@
 > [!NOTE]
 > Pode-se adicionar uma `inbound rule` para permitir SSH, para podermos acessar as EC2 e validar conexões.
 #
-## Criação do Relational Database (RDS):
+## 🎲 Criação do Relational Database (RDS):
 
 ### Navegue no console da AWS até `Aurora and RDS` e clique em `Create a database`:
 
@@ -87,7 +87,7 @@
 * Clique em `Create database` para finalizar e aguarde alguns minutos enquanto ela é provisionada;
 * Para finalizar, clique no nome de sua database e confira o `Endpoint` na aba `Connectivity & Security`, ele será o `WORDPRESS_DB_HOST` em seu arquivo docker compose.
 #
-## Criação do File System (EFS):
+## 📁 Criação do File System (EFS):
 
 ### Navegue no console da AWS até `EFS` e clique em `Create File System`:
 
@@ -107,11 +107,11 @@
 >
 > ![montagem-EFS](./images/montagem-EFS.png)
 #
-## Criação da EC2:
+## ☁️ Criação da EC2:
 
 * Nossa instância EC2 não será criada manualmente, ela será configurada posteriormente durante a criação de um `Launch Template` para o nosso `Auto Scalling Group`.
 #
-## Criação do Target Group:
+## 🎯 Criação do Target Group:
 
 ### Navegue no console da AWS até `EC2` e selecione, no menu lateral esquerdo a opção `Target Groups` (também é possível pesquisar diretamente, sem precisar passar pela página da EC2) e clique em `Create target group`:
 
@@ -127,7 +127,7 @@
   ![health-check-settings](./images/health-check-settings.png)
 * Clique em `Next` e em seguinda em `Create target group`.
 #
-## Criação do Load Balancer:
+## 🚥 Criação do Load Balancer:
 
 ### Retorne à página da `EC2` e, no menu lateral esquerdo, selecione `Load Balancers` e então clique em `Create load balancer`:
 
@@ -142,7 +142,7 @@
 * Em `Listeners and routing` mantenha o procolo `HTTP` e a porta `80`, e selecione o `Target Group` criado na etapa anterior;
 * Finalize clicando em `Create load balancer`.
 #
-## Criação do Auto Scalling Group (ASG):
+## 📈 Criação do Auto Scalling Group (ASG):
 
 ### Retorne à página da `EC2` e, no menu lateral esquerdo, selecione `Auto Scalling Groups` e clique em `Create Auto Scalling Group`:
 
@@ -214,7 +214,7 @@
 
 * Clique em `Create Auto Scalling Group`.
 #
-## Testes e Validações:
+## ☑️ Testes e Validações:
 
 * Após criar o `Auto Scalling Group` as instâncias `EC2` serão lançadas automaticamente e, após terminarem de iniciar, podemos acessar nosso conteúdo via DNS do `Load Balancer`:
 ![wordpressRunning](./images/wordpressRunning.png)
@@ -271,3 +271,6 @@
 
 > [!NOTE]
 > O alarme voltado para `scale out` também entra em estado de `Alarm in` para lançar mais instâncias, mas não consegui fazer o registro.
+#
+### Com isso finalizamos o projeto! 🥳 <br/>
+### Obrigado! 😎
