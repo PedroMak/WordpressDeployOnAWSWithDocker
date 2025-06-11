@@ -101,6 +101,9 @@
   * A terceira etapa é opcional;
   * Para finalizar, revisamos nosso `EFS` na quarta etapa e clicamos em `Create`
   * Após a criação, confira o `File System ID`, que será utilizado em seu `User Data`.
+
+> [!TIP]
+> Quando sua EC2 estiver rodando, podemos conferir se a montagem foi feita corretamente nos conectando à instância via `Instance Connect` e rodando o comando `df -h`.
 #
 ## Criação da EC2:
 
