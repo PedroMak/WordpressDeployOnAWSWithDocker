@@ -162,7 +162,7 @@
 > [!NOTE]
 > Para o Programa de Bolsas, é necessário adicionar tags específicas em `Resource Tags`.
 
-* Clique para expandir a aba de `Advanced details`, desça até o final da página e localize o campo para inserção do `User data` e insira os comandos desejados;
+* Clique para expandir a aba de `Advanced details`, desça até o final da página, localize o campo para inserção do `User data` e insira os comandos desejados;
 
 > [!NOTE]
 > User data utilizado [aqui](https://github.com/PedroMak/WordpressDeployOnAWSWithDocker/blob/master/userdata.sh).
@@ -219,7 +219,7 @@
 * Após criar o `Auto Scalling Group` as instâncias `EC2` serão lançadas automaticamente e, após terminarem de iniciar, podemos acessar nosso conteúdo via DNS do `Load Balancer`:
 ![wordpressRunning](./images/wordpressRunning.png)
 
-* Após escolher o idioma deverá ser realizada a isntalação do Wordpress, nomeando o site e criando um usuário e senha atrelado a um email;
+* Após a escolha do idioma será realizada a instalação do Wordpress, nomeando o site e criando um usuário e senha atrelado a um email;
 * Depois de instalar e realizar o login estaremos diante do site no ar:
 ![wordpress-dashboard](./images/wordpress-dashboard.png)
 
@@ -228,11 +228,11 @@
 
 * Isso se deve a um comportamento do Wordpress onde o caminho `/` nos retorna um `Status Code 302`, ou seja, ele nos redireciona para uma nova URL. Tal efeito gera discussões em fóruns, como o [serverfault](https://serverfault.com/questions/826719/how-to-create-a-url-in-a-wordpress-that-will-return-code-200), onde os usuários buscam formas de "driblar" esse comportamento. Uma das formas citadas é alterar o caminho onde o `Health Check` é realizado de `/` para `/wp-admin/images/wordpress-logo.svg` que, quando o site está no ar, sempre retorna `Status Code 200`;
 
-* Uma segunda forma, mas não tão agradável seria adicionar o código `302` em `Success codes` de nosso `Health Check`;
+* Uma segunda forma, mas não tão elegante, seria adicionar o código `302` em `Success codes` de nosso `Health Check`;
 
 * Uma terceira forma, e a mais elegante, é utilizar o plugin [Health Endpoint](https://github.com/jonotaegi/wordpress-health-endpoint), desenvolvido pela comunidade, onde o plugin cria um endpoint `/health` que testa a conexão com o banco de dados e retorna `200 OK` enquanto a página estiver saudável;
   * Para instalar o plugin, selecionei a opção `Plugins` no menu lateral esquerdo;
-  * Em seguida cliquei em `Add plugin` e pesquisei pelo nome `Health Endpoint` e cliquei em `Install Now`:</br>
+  * Em seguida cliquei em `Add plugin`, pesquisei pelo nome `Health Endpoint` e cliquei em `Install Now`:</br>
   ![health-endpoint-plugin](./images/health-endpoint-plugin.png)
   * Após a instalação, clique em `Activate`.
 
