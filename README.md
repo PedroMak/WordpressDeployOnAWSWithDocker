@@ -238,3 +238,36 @@
 
 * Com o plugin instalado, podemos conferir novamente a aba `Target` e veremos que eles agora se encontram `Healthy`:
 ![healthy-check](./images/healthy-check.png)
+
+#### Checagem de escalonamento:
+
+* Durante a criação do nosso `Auto Scalling Group` foi criada uma política de escalonamento baseada em quantidade de requisições. Essas políticas podem ser visualizadas na página do `CloudWatch`;
+* No console da AWS navegamos até `CloudWatch` e no menu lateral selecionamos `All alarms`
+* Conseguimos visualizar que dois alarmes foram criados e que em seu estado consta `Insufficient data` pois ainda não foram coletados dados suficientes para avaliar a condição do alarme:
+![alarm-insufficient](./images/alarm-insufficient.png)
+![alarm-graph](./images/alarm-insufficient-graph.png)
+
+* Antes de testar, vamos observar que no momento temos duas instâncias rodando (`Desired capacity = 2`):
+![running-instances](./images/running-instance.png)
+
+* Agora, para testar iremos usar o [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html) para gerar requisições em nosso `Load Balancer`;
+
+#### Simulando requisições:
+
+* Em meu subsystem Linux eu rodei o comando `ab` para verificar se estava instalado, mas como não estava rodei o comando `sudo apt install apache2-utils` para realizar a instalação;
+* Em seguida rodei o comando `ab -n 100 -c 10 <http://dns_do_load_balancer/>` onde:
+  * `-n` indica o número de requisições que serão feitas (no caso 100);
+  * `-c` indica a realização de múltiplas requisições ao mesmo tempo (no caso 10 requisições simultâneas).
+* Após rodar o comando podemos ver que foram lançadas novas instâncias:
+![running-instances-4](./images/running-instances-4.png)
+* O novo gráfico:
+![ok-graph](./images/alarm-OK-graph.png)
+* Conseguimos observar também que, agora que possuímos dados para análise, no estado de nossos alarmes constam como `OK`:
+![alarm-OK](./images/alarm-OK.png)
+
+* Após um tempo sem realizar requisições o alarme voltado para o `scale in` entra em estado de `In alarm`:
+![in-alarm](./images/alarm-in-alarm.png)
+* Assim, as instâncias extra são gradativamente removidas.
+
+> [!NOTE]
+> O alarme voltado para `scale out` também entra em estado de `Alarm in` para lançar mais instâncias, mas não consegui fazer o registro.
