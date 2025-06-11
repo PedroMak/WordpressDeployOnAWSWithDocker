@@ -191,9 +191,9 @@
     * `Instance warmup`: 300;
     * As configurações restantes podem ser mantidas como default, então clique em `Next`;
 
-    >[!NOTE]
-    > É possível criar uma política de escalonamento mais robusta e com alarmes via `CloudWatch`.
-    
+>[!NOTE]
+> É possível criar uma política de escalonamento mais robusta e com alarmes via `CloudWatch`.
+
 * A quinta e sexta etapas são opcionais, clique em `Next` nas duas, mas antes de clicar em `Create Auto Scalling Group` precisamos criar o `NAT Gateway`;
 
 #### Criação do NAT Gateway:
