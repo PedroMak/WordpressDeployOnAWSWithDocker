@@ -104,6 +104,8 @@
 
 > [!TIP]
 > Quando sua EC2 estiver rodando, podemos conferir se a montagem foi feita corretamente nos conectando à instância via `Instance Connect` e rodando o comando `df -h`.
+>
+> ![montagem-EFS](./images/montagem-EFS.png)
 #
 ## Criação da EC2:
 
