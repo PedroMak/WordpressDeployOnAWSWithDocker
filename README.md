@@ -1,8 +1,8 @@
-# Projeto Wordpress - AWS e Docker - PB Compass UOL ![logo](./images/compass-logo.png)
+# Projeto Wordpress - AWS e Docker
 
 ## ✏️ Descrição da atividade:
 
-* Instalação e configuração do DOCKER ou CONTAINERD no host EC2;
+* Instalação e configuração do DOCKER no host EC2;
 * Deploy de uma aplicação Wordpress com: container de aplicação e RDS database MySql;
 * Configuração da utilização do serviço EFS AWS para estáticos do container de aplicação Wordpress;
 * Configuração do serviço de Load Balancer AWS para a aplicação Wordpress.
@@ -109,7 +109,7 @@
 #
 ## ☁️ Criação da EC2:
 
-* Nossa instância EC2 não será criada manualmente, ela será configurada posteriormente durante a criação de um `Launch Template` para o nosso `Auto Scalling Group`.
+* Nossa instância EC2 não será criada manualmente, ela será configurada posteriormente durante a criação de um `Launch Template` para o nosso `Auto Scaling Group`.
 #
 ## 🎯 Criação do Target Group:
 
@@ -142,11 +142,11 @@
 * Em `Listeners and routing` mantenha o procolo `HTTP` e a porta `80`, e selecione o `Target Group` criado na etapa anterior;
 * Finalize clicando em `Create load balancer`.
 #
-## 📈 Criação do Auto Scalling Group (ASG):
+## 📈 Criação do Auto Scaling Group (ASG):
 
-### Retorne à página da `EC2` e, no menu lateral esquerdo, selecione `Auto Scalling Groups` e clique em `Create Auto Scalling Group`:
+### Retorne à página da `EC2` e, no menu lateral esquerdo, selecione `Auto Scaling Groups` e clique em `Create Auto Scaling Group`:
 
-* Nesta primeira etapa, dê um nome para seu `Auto Scalling Group`;
+* Nesta primeira etapa, dê um nome para seu `Auto Scaling Group`;
 * Em `Launch Template` selecione a opção para criar um novo (será aberto em uma aba nova);
 
 #### Criação do Launch Template:
@@ -158,10 +158,6 @@
 * Para `Key pair` pode manter a opção `Don't include in launch template`;
 * Em `Network settings` não há necessidade de seleções no momento, a escolha de `subnet` e `Security group` pode ser feita posteriormente durante a criação do `Auto Scalling Group`, mas caso queira, pode-se selecionar logo o `Security Group`;
 * Em `Storage` pode-se manter o default;
-
-> [!NOTE]
-> Para o Programa de Bolsas, é necessário adicionar tags específicas em `Resource Tags`.
-
 * Clique para expandir a aba de `Advanced details`, desça até o final da página, localize o campo para inserção do `User data` e insira os comandos desejados;
 
 > [!NOTE]
@@ -169,7 +165,7 @@
 
 * Clique em `Create launch template`.
 
-#### De volta à criação do Auto Scalling Group:
+#### De volta à criação do Auto Scaling Group:
 
 * Com o nome já definido, selecione o `Launch Template` que foi criado e clique em `Next`;
 * Na segunda etapa, em `Network`, selecione sua VPC, as duas subnets públicas e pode manter `Balanced best effort`. Clique em `Next`;
@@ -183,7 +179,7 @@
   * `Desired capacity`: 2;
   * `Min desired capacity`: 2;
   * `Max desired capacity`: 4;
-  * Em `Automatic scalling` selecionamos `Target tracking scaling policy` e editamos as seguintes configurações:
+  * Em `Automatic scaling` selecionamos `Target tracking scaling policy` e editamos as seguintes configurações:
     * Dê um nome para sua política;
     * Defina a métrica como `Application Load Balancer request count per target`;
     * Selecione seu `Target Group`;
@@ -194,7 +190,7 @@
 >[!NOTE]
 > É possível criar uma política de escalonamento mais robusta e com alarmes via `CloudWatch`.
 
-* A quinta e sexta etapas são opcionais, clique em `Next` nas duas, mas antes de clicar em `Create Auto Scalling Group` precisamos criar o `NAT Gateway`;
+* A quinta e sexta etapas são opcionais, clique em `Next` nas duas, mas antes de clicar em `Create Auto Scaling Group` precisamos criar o `NAT Gateway`;
 
 #### Criação do NAT Gateway:
 
@@ -210,13 +206,13 @@
   ![nat-route](./images/nat-route.png)
 * Clique em `Save changes` e repita o processo, criando um segundo `NAT Gateway` para a segunda subnet.
 
-#### De volta a tela de criação do Auto Scalling Group:
+#### De volta a tela de criação do Auto Scaling Group:
 
-* Clique em `Create Auto Scalling Group`.
+* Clique em `Create Auto Scaling Group`.
 #
 ## ☑️ Testes e Validações:
 
-* Após criar o `Auto Scalling Group` as instâncias `EC2` serão lançadas automaticamente e, após terminarem de iniciar, podemos acessar nosso conteúdo via DNS do `Load Balancer`:
+* Após criar o `Auto Scaling Group` as instâncias `EC2` serão lançadas automaticamente e, após terminarem de iniciar, podemos acessar nosso conteúdo via DNS do `Load Balancer`:
 ![wordpressRunning](./images/wordpressRunning.png)
 
 * Após a escolha do idioma será realizada a instalação do Wordpress, nomeando o site e criando um usuário e senha atrelado a um email;
