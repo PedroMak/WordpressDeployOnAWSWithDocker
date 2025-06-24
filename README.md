@@ -7,7 +7,7 @@
 * Configuração da utilização do serviço EFS AWS para estáticos do container de aplicação Wordpress;
 * Configuração do serviço de Load Balancer AWS para a aplicação Wordpress.
 
-
+![arquitetura](./images/arquitetura-projeto.png)
 #
 ## 🔒 Criação da VPC:
 
